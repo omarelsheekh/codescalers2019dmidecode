@@ -1,19 +1,29 @@
 class DMIDCode:
     def __init__(self,s):
-       arr=s.split("\n")
-       self.dict={}
-       i=6
-       arr.append(':')
-       while i< len(arr)-1:
-        k=arr[i].split(":")[0].strip()
-        v=arr[i].split(':')[1].strip()
-        while not ':' in arr[i+1]:
+        """setup the dict from Dmide string
+        Arguments:
+            s {str} -- the string of DMIDE code
+         """
+        arr=s.split("\n")
+        self.dict={}
+        i=6
+        arr.append(':')
+        while i< len(arr)-1:
+         k=arr[i].split(":")[0].strip()
+         v=arr[i].split(':')[1].strip()
+         while not ':' in arr[i+1]:
             v+='\n'+arr[i+1].strip()
             i+=1
-        i+=1
-        self.dict[k]=v
+         i+=1
+         self.dict[k]=v
 
     def getValue(self,s):
+        """Gets the value associated with the key.
+        Arguments:
+            s {str} -- the string representing the key
+        Returns:
+            str -- the value of the key if it exist
+        """
         if s in self.dict:
             return self.dict[s]
         else:
